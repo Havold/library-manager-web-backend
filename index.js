@@ -30,6 +30,18 @@ app.use('/api/auth', authRoute)
 app.use('/api/books', booksRoute)
 app.use('/api/users', usersRoute)
 
+// Error handling
+app.use((err, req, res, next) => {
+    const errStatus = err.status || 500;
+    const errMessage = err.message || 'Something went wrong!';
+    res.status(errStatus).json({
+        success: false,
+        status: errStatus,
+        message: errMessage,
+        stack: err.stack,
+    })
+})
+
 app.listen(PORT, () => {
     connect();
     console.log('Server is running on port: ', PORT)

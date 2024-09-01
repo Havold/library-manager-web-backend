@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Book from "../models/Book.js";
+import { createError } from "../utils/error.js";
 
 const router = Router();
 
@@ -46,7 +47,13 @@ router.get('/:id', async (req, res) => {
 })
 
 // GET ALL
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
+
+    const failed = true;
+    if (failed) {
+        return next(createError(401, 'You are not authenticated!'))
+    }
+
     try {
         const books = await Book.find()
         res.status(200).json(books);
