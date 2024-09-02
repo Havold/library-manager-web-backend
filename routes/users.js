@@ -1,14 +1,14 @@
 import { Router } from "express";
+import { getAllUsers } from "../controllers/user.js";
 
 const router = Router()
 
 // CREATE
-router.get('/', (req,res) => {
-    res.send('Hello World from auth.js')
-})
+
 // UPDATE
 // DELETE
 // GET
 // GET ALL
+router.get('/', getAllUsers)
 
 export default router
