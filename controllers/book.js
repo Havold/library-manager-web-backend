@@ -12,7 +12,7 @@ export const createBook = async (req, res, next) => {
 
 export const updateBook = async (req, res, next) => {
     try {
-        const updatedBook = await Book.findByIdAndUpdate(req.params.id, {$set: req.body})
+        const updatedBook = await Book.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
         res.status(200).json(updatedBook)
     } catch (error) {
         next(error)

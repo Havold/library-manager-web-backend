@@ -2,17 +2,18 @@ import { Router } from "express";
 import Book from "../models/Book.js";
 import { createError } from "../utils/error.js";
 import { createBook, deleteBook, getAllBooks, getBook, updateBook } from "../controllers/book.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = Router();
 
 // CREATE
-router.post('/', createBook)
+router.post('/', verifyAdmin, createBook)
 
 // UPDATE
-router.put('/:id', updateBook)
+router.put('/:id', verifyAdmin, updateBook)
 
 // DELETE
-router.delete('/:id', deleteBook)
+router.delete('/:id', verifyAdmin, deleteBook)
 
 // GET
 router.get('/:id', getBook)
