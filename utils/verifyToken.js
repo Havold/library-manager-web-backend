@@ -38,3 +38,13 @@ export const verifyAdmin = (req, res, next) => {
         }
     })
 }
+
+export const verifyTeacher = (req, res, next) => {
+    verifyToken(req, res, () => {
+        if (req.user.isTeacher || req.user.isAdmin) {
+            next();
+        } else {
+            return next(createError(403, 'You are not authorized!'))
+        }
+    })
+}

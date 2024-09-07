@@ -2,7 +2,9 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose';
 import authRoute from './routes/auth.js'
-import booksRoute from './routes/books.js'
+import studentRoute from './routes/students.js'
+import teacherRoute from './routes/teachers.js'
+import classRoute from './routes/classes.js'
 import usersRoute from './routes/users.js'
 import cookieParser from 'cookie-parser';
 
@@ -29,7 +31,9 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.use('/api/auth', authRoute)
-app.use('/api/books', booksRoute)
+app.use('/api/students', studentRoute)
+app.use('/api/teachers', teacherRoute)
+app.use('/api/classes', classRoute)
 app.use('/api/users', usersRoute)
 
 // Error handling

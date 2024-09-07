@@ -20,6 +20,10 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    isTeacher: {
+        type: Boolean,
+        default: false,
+    }
 }, {timestamps: true})
 
 export default mongoose.model('User', UserSchema)

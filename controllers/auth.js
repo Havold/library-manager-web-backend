@@ -12,6 +12,8 @@ export const register = async (req, res, next) => {
       username: req.body.username,
       email: req.body.email,
       password: hashPwd,
+      isAdmin: req.body.isAdmin,
+      isTeacher: req.body.isTeacher,
     });
 
     await newUser.save();
@@ -37,7 +39,7 @@ export const login = async (req, res, next) => {
     }
 
     const token = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
+      { id: user._id, isAdmin: user.isAdmin, isTeacher: user.isTeacher },
       process.env.JWT
     );
 
